@@ -3,19 +3,28 @@ import com.sun.org.apache.xpath.internal.SourceTree;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by ermol on 10/5/2017.
  */
 public class Login {
+    public List<String> logins = new ArrayList<String>(Arrays.asList("admin", "Vasya", "Ochoba Williams", "Glebanya", "car_washer666", "idontwannasignup"));
+    public List<String> passwords = new ArrayList<String>(Arrays.asList("bigboss", "qwerty", "nobodylovesme", "thesmallerthebetter", "washdatbitch", "qwerty123"));
+
     public static void main(String[] args) {
         Login login = new Login();
-        login.showWin();
+        login.showWin(login);
     }
 
-    public void showWin() {
-        String[] logins = {"admin", "Vasya", "Ochoba Williams", "Glebanya", "car_washer666", "idontwannasignup"};
-        String[] passwords = {"bigboss", "qwerty", "nobodylovesme", "thesmallerthebetter", "washdatbitch", "qwerty123"};
+    public void showWin(Login loginObj) {
+
+        for (int i = 0; i < logins.size(); i++) {
+            System.out.println(logins.get(i));
+            System.out.println(passwords.get(i));
+        }
 
         JPanel panel = new JPanel();
         JFrame frame = new JFrame("Car Wash");
@@ -29,26 +38,27 @@ public class Login {
 
         JButton in = new JButton("Login");
         JButton out = new JButton("Exit");
+        JButton reg = new JButton("Sign up");
 
         in.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (int i = 0; i < logins.length; i++) {
-                    if (loginField.getText().equals(logins[i]) && passwordField.getText().equals(passwords[i])) {
-                        if (loginField.getText().equals(logins[0])) {
+                for (int i = 0; i < logins.size(); i++) {
+                    if (loginField.getText().equals(logins.get(i)) && passwordField.getText().equals(passwords.get(i))) {
+                        if (loginField.getText().equals(logins.get(0))) {
+                            System.out.println("Logged in as admin.");
                             //Admin admin = new Admin();
                             //admin.showWindow();
                             //frame.setVisible(false);
-                            System.out.println("Logged in as admin.");
                             break;
                         } else {
+                            System.out.println("Logged in as user.");
                             //User user = new User();
                             //user.showWindow();
                             //frame.setVisible(false);
-                            System.out.println("Logged in as user.");
                             break;
                         }
-                    } else if (i == logins.length - 1) {
+                    } else if (i == logins.size() - 1) {
                         System.out.println("Error");
                     }
                 }
@@ -62,13 +72,24 @@ public class Login {
             }
         });
 
+        reg.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SignUp sign = new SignUp();
+                sign.showWindow(loginObj);
+                frame.setVisible(false);
+                System.out.println("Move to another window");
+            }
+        });
+
         panel.add(login);
         panel.add(loginField);
         panel.add(pass);
         panel.add(passwordField);
         panel.add(in);
         panel.add(out);
-
+        panel.add(reg);
+        
         frame.setContentPane(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 300);
