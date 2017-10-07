@@ -20,12 +20,12 @@ public class Login {
     }
 
     public void showWin(Login loginObj) {
-
-        for (int i = 0; i < logins.size(); i++) {
-            System.out.println(logins.get(i));
-            System.out.println(passwords.get(i));
-        }
-
+        /*
+        *for (int i = 0; i < logins.size(); i++) {
+        *    System.out.println(logins.get(i));
+        *    System.out.println(passwords.get(i));
+        *}
+        */
         JPanel panel = new JPanel();
         JFrame frame = new JFrame("Car Wash");
         BoxLayout layout = new BoxLayout(panel, BoxLayout.Y_AXIS);
@@ -47,9 +47,9 @@ public class Login {
                     if (loginField.getText().equals(logins.get(i)) && passwordField.getText().equals(passwords.get(i))) {
                         if (loginField.getText().equals(logins.get(0))) {
                             System.out.println("Logged in as admin.");
-                            //Admin admin = new Admin();
-                            //admin.showWindow();
-                            //frame.setVisible(false);
+                            Admin admin = new Admin();
+                            admin.showWindow(loginObj, logins.get(i));
+                            frame.setVisible(false);
                             break;
                         } else {
                             System.out.println("Logged in as user.");
