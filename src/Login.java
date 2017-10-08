@@ -89,12 +89,25 @@ public class Login {
         panel.add(pass);
         panel.add(passwordField);
         panel.add(in);
-        panel.add(out);
         panel.add(reg);
+        panel.add(out);
         
         frame.setContentPane(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 300);
         frame.setVisible(true);
+    }
+
+    public boolean isNumeric(String str)
+    {
+        try
+        {
+            double d = Double.parseDouble(str);
+        }
+        catch(NumberFormatException nfe)
+        {
+            return false;
+        }
+        return true;
     }
 }
