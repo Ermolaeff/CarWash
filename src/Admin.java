@@ -25,9 +25,16 @@ public class Admin {
         JMenuItem viewAccounts = new JMenuItem("View Accounts");
         JMenuItem deleteAccount = new JMenuItem("Delete account");
 
-        JLabel welcome = new JLabel("Welcome to your kingdom, your highness, " + name);
+        JLabel welcome = new JLabel("Welcome to your kingdom, your highness " + name);
         JButton back = new JButton("Back to login screen");
         JButton exit = new JButton("Exit to desktop");
+
+        viewPrices.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(panel, "Your prices here", "Price list", JOptionPane.DEFAULT_OPTION);
+            }
+        });
 
         back.addActionListener(new ActionListener() {
             @Override

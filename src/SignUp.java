@@ -26,14 +26,18 @@ public class SignUp {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (log.logins.contains(loginField.getText())) {
+                    JOptionPane.showMessageDialog(panel, "Error. This nickname already exists.", "Error Message", JOptionPane.DEFAULT_OPTION);
                     System.out.println("Error. This nickname already exists.");
                 } else if (!passwordField.getText().equals(passwordField2.getText())) {
+                    JOptionPane.showMessageDialog(panel, "Error. Passwords you entered are not the same.", "Error Message", JOptionPane.DEFAULT_OPTION);
                     System.out.println("Error. Passwords you entered are not the same.");
                 } else if (loginField.getText().length() == 0 || passwordField.getText().length() == 0) {
+                    JOptionPane.showMessageDialog(panel, "Error. Enter login and password", "Error Message", JOptionPane.DEFAULT_OPTION);
                     System.out.println("Error. Enter login and password");
                 } else {
                     log.logins.add(loginField.getText());
                     log.passwords.add(passwordField.getText());
+                    JOptionPane.showMessageDialog(panel, "Success. New account created.", "Success Message", JOptionPane.DEFAULT_OPTION);
                     System.out.println("Success. New account created.");
                     frame.setVisible(false);
                     log.showWin(log);

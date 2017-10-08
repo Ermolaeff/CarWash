@@ -11,8 +11,10 @@ import java.util.List;
  * Created by ermol on 10/5/2017.
  */
 public class Login {
-    public List<String> logins = new ArrayList<String>(Arrays.asList("admin", "Vasya", "Ochoba Williams", "Glebanya", "car_washer666", "idontwannasignup"));
-    public List<String> passwords = new ArrayList<String>(Arrays.asList("bigboss", "qwerty", "nobodylovesme", "thesmallerthebetter", "washdatbitch", "qwerty123"));
+    public List<String> logins = new ArrayList<>(Arrays.asList("admin", "Vasya", "Ochoba Williams", "Glebanya", "car_washer666", "idontwannasignup"));
+    public List<String> passwords = new ArrayList<>(Arrays.asList("bigboss", "qwerty", "nobodylovesme", "thesmallerthebetter", "washdatbitch", "qwerty123"));
+    public List<String> items = new ArrayList<>(Arrays.asList("Ordinary car wash", "Car wash PRO", "Chocolates and coffee"));
+    public List<Integer> prices = new ArrayList<>(Arrays.asList(20, 35, 15));
 
     public static void main(String[] args) {
         Login login = new Login();
