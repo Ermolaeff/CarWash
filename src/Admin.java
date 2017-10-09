@@ -19,10 +19,10 @@ public class Admin {
         JMenu prices = new JMenu("Prices");
         JMenu offers = new JMenu("Special offers");
         JMenu accounts = new JMenu("Account management");
-        JMenuItem viewPrices = new JMenuItem("View prices");
+        JMenuItem viewPrices = new JMenuItem("View price");
         JMenuItem changePrices = new JMenuItem("Change prices");
         JMenuItem addPrice = new JMenuItem("Add new item");
-        JMenuItem viewOffers = new JMenuItem("View offers");
+        JMenuItem viewOffers = new JMenuItem("View offer");
         JMenuItem addOffer = new JMenuItem("Add new offer");
         JMenuItem viewAccounts = new JMenuItem("View Accounts");
         JMenuItem deleteAccount = new JMenuItem("Delete account");
@@ -31,13 +31,46 @@ public class Admin {
         JButton back = new JButton("Back to login screen");
         JButton exit = new JButton("Exit to desktop");
 
+        viewOffers.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = JOptionPane.showInputDialog(panel, "Type in the name of the offer", null);
+                if(login.offers.contains(name)) {
+                    JOptionPane.showMessageDialog(panel, "The price of " + name + " is " + login.offersPrices.get(login.offers.indexOf(name)) + "$",
+                            "Success message", JOptionPane.DEFAULT_OPTION);
+                } else {
+                    JOptionPane.showMessageDialog(panel, "Error. No such offer.", "Error message", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        addOffer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = JOptionPane.showInputDialog(panel, "Type in the name of the new offer", null);
+                if (login.offers.contains(name)) {
+                    JOptionPane.showMessageDialog(panel, "Error. This offer already exists.", "Error message", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    String price = JOptionPane.showInputDialog(panel, "Type in th price", null);
+                    if (login.isNumeric(price)) {
+                        int priceInt = Integer.parseInt(price);
+                        login.offers.add(name);
+                        login.offersPrices.add(priceInt);
+                        JOptionPane.showMessageDialog(panel, "Succes. New offer added.", "Success message", JOptionPane.DEFAULT_OPTION);
+                    } else {
+                        JOptionPane.showMessageDialog(panel, "Error. You did not enter a number.", "Error message", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        });
+
         viewPrices.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String item = JOptionPane.showInputDialog(panel, "Type in the name of the item", null);
                 if (login.items.contains(item)) {
                     int count = login.items.indexOf(item);
-                    JOptionPane.showMessageDialog(panel, "The price of " + item + " is " + login.prices.get(count) + "$", "Success message", JOptionPane.DEFAULT_OPTION);
+                    JOptionPane.showMessageDialog(panel, "The price of " + item + " is " + login.itemsPrices.get(count) + "$", "Success message", JOptionPane.DEFAULT_OPTION);
                 } else {
                     JOptionPane.showMessageDialog(panel, "Error. No such item.", "Error message", JOptionPane.ERROR_MESSAGE);
                 }
@@ -53,8 +86,8 @@ public class Admin {
                     if (login.isNumeric(price)) {
                         int count = login.items.indexOf(item);
                         int priceInt = Integer.parseInt(price);
-                        login.prices.add(count, priceInt);
-                        login.prices.remove(count + 1);
+                        login.itemsPrices.add(count, priceInt);
+                        login.itemsPrices.remove(count + 1);
                         JOptionPane.showMessageDialog(panel, "Success. The price is changed.", "Success message", JOptionPane.DEFAULT_OPTION);
                     } else {
                         JOptionPane.showMessageDialog(panel, "Error. You did not enter a number.", "Error message", JOptionPane.ERROR_MESSAGE);
@@ -76,7 +109,7 @@ public class Admin {
                     if (login.isNumeric(price)) {
                         int priceInt = Integer.parseInt(price);
                         login.items.add(item);
-                        login.prices.add(priceInt);
+                        login.itemsPrices.add(priceInt);
                         JOptionPane.showMessageDialog(panel, "Success. New item added.", "Success message", JOptionPane.DEFAULT_OPTION);
                     } else {
                         JOptionPane.showMessageDialog(panel, "Error. You did not enter a number.", "Error Message", JOptionPane.ERROR_MESSAGE);
