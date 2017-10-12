@@ -11,14 +11,17 @@ import java.util.List;
  * Created by ermol on 10/5/2017.
  */
 public class Login {
-    public List<String> logins = new ArrayList<>(Arrays.asList("admin", "Vasya", "Ochoba Williams", "Glebanya", "car_washer666", "idontwannasignup"));
-    public List<String> passwords = new ArrayList<>(Arrays.asList("bigboss", "qwerty", "nobodylovesme", "thesmallerthebetter", "washdatbitch", "qwerty123"));
+    public List<User> users = new ArrayList<>(Arrays.asList(new User("admin", "bigboss"), new User("Vasya", "qwerty"), new User ("OchobaWilliams", "nobodylovesme"),
+            new User("Glebanya", "thesmallerthebetter"), new User("car_washer666", "washdatbitch"), new User("idontwannasignup", "qwerty123")));
+    List<String> logins = new ArrayList<>(Arrays.asList("admin", "Vasya", "Ochoba Williams", "Glebanya", "car_washer666", "idontwannasignup"));
+    List<String> passwords = new ArrayList<>(Arrays.asList("bigboss", "qwerty", "nobodylovesme", "thesmallerthebetter", "washdatbitch", "qwerty123"));
     public List<String> items = new ArrayList<>(Arrays.asList("Ordinary car wash", "Car wash PRO", "Chocolates and coffee"));
     public List<Integer> itemsPrices = new ArrayList<>(Arrays.asList(20, 35, 15));
     public List<String> offers = new ArrayList<>(Arrays.asList("First wash free", "Ochoba wash"));
     public List<Integer> offersPrices = new ArrayList<>(Arrays.asList(0, 666));
 
     public static void main(String[] args) {
+
         Login login = new Login();
         login.showWin(login);
     }
@@ -57,9 +60,9 @@ public class Login {
                             break;
                         } else {
                             System.out.println("Logged in as user.");
-                            //User user = new User();
-                            //user.showWindow();
-                            //frame.setVisible(false);
+                            int count = logins.indexOf(loginField.getText());
+                            users.get(count).showWin(loginObj);
+                            frame.setVisible(false);
                             break;
                         }
                     } else if (i == logins.size() - 1) {

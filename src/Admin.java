@@ -24,12 +24,34 @@ public class Admin {
         JMenuItem addPrice = new JMenuItem("Add new item");
         JMenuItem viewOffers = new JMenuItem("View offer");
         JMenuItem addOffer = new JMenuItem("Add new offer");
-        JMenuItem viewAccounts = new JMenuItem("View Accounts");
         JMenuItem deleteAccount = new JMenuItem("Delete account");
 
         JLabel welcome = new JLabel("Welcome to your kingdom, your highness " + name);
         JButton back = new JButton("Back to login screen");
         JButton exit = new JButton("Exit to desktop");
+
+        deleteAccount.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = JOptionPane.showInputDialog(panel, "Type in username");
+                if (login.logins.contains(username)) {
+                    int answer = JOptionPane.showConfirmDialog(panel, "Are you sure?", "Confirmation message", JOptionPane.YES_NO_OPTION);
+                    if (answer == 0) {
+                        int count = login.logins.indexOf(username);
+                        if (count != 0) {
+                            login.users.remove(count);
+                            login.logins.remove(count);
+                            login.passwords.remove(count);
+                            JOptionPane.showMessageDialog(panel, "Success. Account deleted.", "Success message", JOptionPane.DEFAULT_OPTION);
+                        } else {
+                            JOptionPane.showMessageDialog(panel, "Error. You cannot delete admin.", "Error message", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(panel, "Error. No such user.", "Error message", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
 
         viewOffers.addActionListener(new ActionListener() {
             @Override
@@ -140,7 +162,6 @@ public class Admin {
         prices.add(addPrice);
         offers.add(viewOffers);
         offers.add(addOffer);
-        accounts.add(viewAccounts);
         accounts.add(deleteAccount);
         menuBar.add(prices);
         menuBar.add(offers);

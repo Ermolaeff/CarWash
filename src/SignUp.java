@@ -35,6 +35,7 @@ public class SignUp {
                     JOptionPane.showMessageDialog(panel, "Error. Enter login and password", "Error Message", JOptionPane.ERROR_MESSAGE);
                     System.out.println("Error. Enter login and password");
                 } else {
+                    log.users.add(new User(loginField.getText(), passwordField.getText()));
                     log.logins.add(loginField.getText());
                     log.passwords.add(passwordField.getText());
                     JOptionPane.showMessageDialog(panel, "Success. New account created.", "Success Message", JOptionPane.DEFAULT_OPTION);
